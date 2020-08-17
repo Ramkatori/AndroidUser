@@ -2,31 +2,115 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.apkglobal.testfirebase">
 
-    <uses-permission android:name="android.permission.INTERNET" />
-
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
-        android:label="@string/app_name"
+        android:icon="@drawable/repair"
+        android:label="AUTO REPAIR"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".VehicleList"></activity>
+        <activity android:name=".ChooseActivity">
+
+        </activity>
         <activity android:name=".MainActivity" />
         <activity
-            android:name=".Main2Activity"
+            android:name=".features"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
-        <activity android:name=".homeActivity" />
-        <activity android:name=".Select">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+        <activity
+            android:name=".Main2Activity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" >
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
-        <activity android:name=".user" />
-        <activity android:name=".serviceProvider" />
+        <activity android:name=".homeActivity" />
+        <activity
+            android:name=".Select"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+        <activity
+            android:name=".user"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+        <intent-filter>
+            <action android:name="android.intent.action.MAIN" />
+
+            <category android:name="android.intent.category.LAUNCHER" />
+        </intent-filter>
+        </activity>
+
+        <activity
+            android:name=".serviceProvider"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity android:name=".userWants" />
-        <activity android:name=".userLogin"></activity>
+        <activity
+            android:name=".userLogin"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+
+        <activity android:name=".Main3Activity" />
+
+        <activity android:name=".userMapActivity" />
+        <activity
+            android:name=".FirstActivity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+        <activity
+            android:name=".SecondActivity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+        <activity
+            android:name=".ThirdActivity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+        <activity
+            android:name=".dashboard"
+            android:label="DASHBOARD" />
+        <activity
+            android:name=".bikeService"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+        <activity
+            android:name=".carService"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+        <activity android:name=".serviceProviderLogin" />
+        <activity
+            android:name=".scrollView"
+            android:label="Description Of Car Services"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+        <activity
+            android:name=".car_spare"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+        <activity
+            android:name=".carRepair"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+        <activity
+            android:name=".carPaint"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+        <activity
+            android:name=".carInterior"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+        <activity
+            android:name=".bikeRepair"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+        <activity
+            android:name=".carClean"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+        <activity
+            android:name=".carSpa"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+        <activity
+            android:name=".amount"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+        <activity android:name=".address" />
+        <activity android:name=".payment" />
+        <activity android:name=".Main4Activity" />
+        <activity android:name=".chooseService" />
+        <activity
+            android:name=".MapsActivity"
+            android:label="@string/title_activity_maps">
+
+        </activity>
+
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="@string/mine_api_dont_give_it_to_any1" />
     </application>
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
 
 </manifest>

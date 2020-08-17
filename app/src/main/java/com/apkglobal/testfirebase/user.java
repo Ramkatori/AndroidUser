@@ -2,12 +2,17 @@ package com.apkglobal.testfirebase;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
-import android.support.annotation.NonNull;
-import android.support.v7.app.AppCompatActivity;
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.Editable;
 import android.text.TextUtils;
+import android.text.TextWatcher;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -22,9 +27,10 @@ import com.google.firebase.database.FirebaseDatabase;
 
 public class user extends AppCompatActivity {
    Button userRegister;
-
+    String name,email,password,mobile;
    EditText userEmail,userMobileNo,userName,userPassword;
-   TextView loginLink;
+   CheckBox checkBox;
+   TextView userLink;
    ProgressDialog progress ;
    private FirebaseAuth mAuth;
    private FirebaseAuth.AuthStateListener authStateListener;
@@ -43,7 +49,7 @@ public class user extends AppCompatActivity {
               FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
               if(user!=null)
               {
-                  Intent intent2=new Intent(user.this,userWants.class);
+                  Intent intent2=new Intent(user.this,ChooseActivity.class);
                   startActivity(intent2);
                   finish();
               }
@@ -57,9 +63,11 @@ public class user extends AppCompatActivity {
         userName = (EditText) findViewById(R.id.userName);
         userPassword = (EditText) findViewById(R.id.userPassword);
         progress = new ProgressDialog(this);
-       loginLink = (TextView)findViewById(R.id.loginLink);
+       userLink = (TextView)findViewById(R.id.userLink);
+       checkBox = (CheckBox)findViewById(R.id.checkBox);
 
-        loginLink.setOnClickListener(new View.OnClickListener() {
+
+        userLink.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent2=new Intent(user.this,userLogin.class);
@@ -68,31 +76,49 @@ public class user extends AppCompatActivity {
             }
         });
 
+
+
+        userName.addTextChangedListener(loginText);
+        userEmail.addTextChangedListener(loginText);
+        userPassword.addTextChangedListener(loginText);
+        userMobileNo.addTextChangedListener(loginText);
+        checkBox.addTextChangedListener(loginText);
+
+
         userRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                final String name = userName.getText().toString().trim();
-                final String email = userEmail.getText().toString().trim();
-                final String password = userPassword.getText().toString().trim();
+
                 if (!TextUtils.isEmpty(name) || !TextUtils.isEmpty(email) || !TextUtils.isEmpty(password))
                 {
-                    progress.setMessage("Registering,Please Wait..");
-                    progress.show();
+
                     String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
                     if (!email.matches(emailPattern))
                     {
-                        Toast.makeText(getApplicationContext(), "Invalid email address", Toast.LENGTH_SHORT).show();
-                    } else {
+                        LayoutInflater inflater = getLayoutInflater();
+                        View layout=inflater.inflate(R.layout.toast, (ViewGroup)findViewById(R.id.toastDisplay));
+                        Toast newToast = new Toast(getApplicationContext());
+                        newToast.setDuration(Toast.LENGTH_LONG);
+                        newToast.setView(layout);
+                        newToast.show();
+                    }
+                    else
+                    {
 
-
-
-                    final String mobile = userMobileNo.getText().toString().trim();
                     if(mobile.length()<10)
                     {
-                        Toast.makeText(user.this, "please enter valid mobile no...!", Toast.LENGTH_SHORT).show();
-                    }
-                    else {
 
+                        LayoutInflater inflater = getLayoutInflater();
+                        View layout=inflater.inflate(R.layout.toast1, (ViewGroup)findViewById(R.id.toastDisplay1));
+                        Toast newToast = new Toast(getApplicationContext());
+                        newToast.setDuration(Toast.LENGTH_LONG);
+                        newToast.setView(layout);
+                        newToast.show();
+                    }
+                    else
+                        {
+                            progress.setMessage("Registering,Please Wait..");
+                            progress.show();
 
                     mAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(user.this, new OnCompleteListener<AuthResult>() {
                         @Override
@@ -100,15 +126,25 @@ public class user extends AppCompatActivity {
                             if (task.isSuccessful()) {
                                 progress.dismiss();
                                 FirebaseUser userId = task.getResult().getUser();
-                                DatabaseReference currentUser = FirebaseDatabase.getInstance().getReference().child("choice").child("user").child(userId.getUid());
+                                DatabaseReference currentUser = FirebaseDatabase.getInstance().getReference().child("choice").child("User").child(userId.getUid());
                                 currentUser.setValue("true");
 
-                                currentUser = FirebaseDatabase.getInstance().getReference().child("choice").child("User").child("MobileNo");
-                                currentUser.setValue(mobile);
-                                currentUser = FirebaseDatabase.getInstance().getReference().child("choice").child("User").child("Name");
-                                currentUser.setValue(name);
 
-                                Toast.makeText(user.this, "sign up ", Toast.LENGTH_SHORT).show();
+                                currentUser = FirebaseDatabase.getInstance().getReference().child("choice").child("User").child(userId.getUid()).child("Name");
+                                currentUser.setValue(name);
+                                currentUser = FirebaseDatabase.getInstance().getReference().child("choice").child("User").child(userId.getUid()).child("EmailId");
+                                currentUser.setValue(email);
+                                currentUser = FirebaseDatabase.getInstance().getReference().child("choice").child("User").child(userId.getUid()).child("Password");
+                                currentUser.setValue(password);
+                                currentUser = FirebaseDatabase.getInstance().getReference().child("choice").child("User").child(userId.getUid()).child("MobileNo");
+                                currentUser.setValue(mobile);
+
+                                LayoutInflater inflater = getLayoutInflater();
+                                View layout=inflater.inflate(R.layout.toast2, (ViewGroup)findViewById(R.id.toastDisplay2));
+                                Toast newToast = new Toast(getApplicationContext());
+                                newToast.setDuration(Toast.LENGTH_LONG);
+                                newToast.setView(layout);
+                                newToast.show();
                             } else {
                                 Toast.makeText(user.this, task.getException().getMessage(), Toast.LENGTH_SHORT).show();
                             }
@@ -118,6 +154,36 @@ public class user extends AppCompatActivity {
             }
         });
     }
+    private TextWatcher loginText = new TextWatcher() {
+        @Override
+        public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+        }
+
+        @Override
+        public void onTextChanged(CharSequence s, int start, int before, int count) {
+            name = userName.getText().toString().trim();
+            email = userEmail.getText().toString().trim();
+            password = userPassword.getText().toString().trim();
+            mobile = userMobileNo.getText().toString().trim();
+
+
+
+            if(!email.isEmpty() && !password.isEmpty() && !mobile.isEmpty() && !name.isEmpty() )
+            {
+                userRegister.setEnabled(true);
+        }
+        else
+            {
+                userRegister.setEnabled(false);
+            }
+        }
+
+        @Override
+        public void afterTextChanged(Editable s) {
+
+        }
+    };
     @Override
     public void onStart()
     {

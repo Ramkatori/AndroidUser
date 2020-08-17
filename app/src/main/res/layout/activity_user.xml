@@ -3,8 +3,8 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_width="match_parent"
     tools:context=".user">
 
     <Button
@@ -14,66 +14,91 @@
         android:layout_alignParentBottom="true"
         android:layout_alignParentStart="true"
         android:layout_alignParentLeft="true"
-        android:layout_marginBottom="146dp"
+        android:layout_marginBottom="89dp"
         android:layout_marginStart="136dp"
         android:layout_marginLeft="136dp"
-        android:text="Register" />
+        android:text="Register"
+        tools:layout_editor_absoluteX="148dp"
+        tools:layout_editor_absoluteY="383dp" />
 
     <EditText
         android:id="@+id/userName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
-        android:layout_alignParentLeft="false"
+        android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="19dp"
         android:hint="Full Name"
-        android:inputType="textPersonName" />
+        android:inputType="textPersonName"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="16dp" />
 
     <EditText
         android:id="@+id/userEmail"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentLeft="false"
-        android:layout_alignParentTop="true"
-        android:layout_marginTop="81dp"
 
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="87dp"
         android:hint="Email..."
-        android:inputType="textPersonName" />
+        android:inputType="textPersonName"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="62dp" />
 
     <EditText
         android:id="@+id/userMobileNo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
         android:layout_alignParentStart="true"
-        android:layout_alignParentLeft="false"
-        android:layout_alignParentTop="true"
-        android:layout_marginTop="138dp"
+        android:layout_alignParentLeft="true"
+        android:layout_marginBottom="208dp"
         android:digits="0123456789"
-        android:maxLength="10"
         android:hint="Mobile No"
-        android:inputType="textPersonName" />
+        android:inputType="textPersonName"
+        android:maxLength="10"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="206dp" />
 
     <EditText
         android:id="@+id/userPassword"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
-        android:layout_alignParentLeft="false"
+        android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
-        android:layout_marginTop="198dp"
+        android:layout_marginTop="168dp"
         android:hint="Password"
-        android:inputType="textPassword" />
+        android:inputType="textPassword"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="137dp" />
 
     <TextView
-        android:id="@+id/loginLink"
+        android:id="@+id/userLink"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="116dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_marginBottom="50dp"
+        android:layout_marginStart="66dp"
+        android:layout_marginLeft="66dp"
         android:text="Already have an account?"
-        android:textColor="@android:color/holo_red_dark" />
+        android:textColor="@android:color/holo_red_dark"
+        android:textSize="20dp" />
+
+    <CheckBox
+        android:id="@+id/checkBox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_marginBottom="147dp"
+        android:text="I agree with Terms,Conditions and Privacy Policy" />
+
 
 </RelativeLayout>

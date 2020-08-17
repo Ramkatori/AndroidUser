@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">Testfirebase</string>
+    <string name="title_activity_service_provider_map">Map</string>
+    <string name="mine_api_dont_give_it_to_any1">AIzaSyAsE8sKdTNkqoLpj5QJymZgLjijDHEVbD4</string>
+    <string name="title_activity_maps">Map</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
 </resources>
